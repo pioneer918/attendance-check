@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>출석 체크</title>
+    <script>
+        function updateTime() {
+            let now = new Date();
+            let formattedTime = now.getFullYear() + '-' + 
+                                ('0' + (now.getMonth() + 1)).slice(-2) + '-' +
+                                ('0' + now.getDate()).slice(-2) + ' ' +
+                                ('0' + now.getHours()).slice(-2) + ':' +
+                                ('0' + now.getMinutes()).slice(-2) + ':' +
+                                ('0' + now.getSeconds()).slice(-2);
+            document.getElementById("current-time").innerText = formattedTime;
+        }
+
+        setInterval(updateTime, 1000); // 1초마다 시간 업데이트
+    </script>
+</head>
+<body onload="updateTime()">
+    <h1>출석 체크</h1>
+    <p>현재 시간: <span id="current-time"></span></p>
+    <form action="/submit" method="POST">
+        <label for="student_id">학번 입력:</label>
+        <input type="text" id="student_id" name="student_id" required>
+        <button type="submit">출석 체크</button>
+    </form>
+</body>
+</html>
